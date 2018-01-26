@@ -1,6 +1,9 @@
 #include "../BigInteger.h"
 
 namespace euler {
+    BigInteger::BigInteger() {
+        this->value.push_back(0);
+    }
     BigInteger::BigInteger(int num) {
         while (num > 9) {
             this->value.push_back(num / 10);

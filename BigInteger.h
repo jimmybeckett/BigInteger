@@ -9,6 +9,7 @@
 namespace euler { 
     class BigInteger { 
         std::vector<short int> value; 
+        bool isNegative;
     public: 
         //constructors
         BigInteger();
@@ -18,38 +19,39 @@ namespace euler {
         BigInteger(BigInteger&);
 
         //methods
-        std::string toString();
+        std::string toString() const;
+        int digits() const;
    
         //operators
         //unary
-        BigInteger& operator+();
-        BigInteger& operator-();
-        BigInteger& operator++();
-        BigInteger& operator--();
-        BigInteger& operator[](int) const;
+        BigInteger operator+();
+        BigInteger operator-();
+        BigInteger operator++();
+        BigInteger operator--();
+        BigInteger operator[](int) const;
 
         //arithmetic
-        BigInteger& operator+(const BigInteger) const;
-        BigInteger& operator-(const BigInteger) const;
-        BigInteger& operator*(const BigInteger) const;
-        BigInteger& operator/(const BigInteger) const;
-        BigInteger& operator%(const BigInteger) const;
+        BigInteger operator+(const BigInteger&) const;
+        BigInteger operator-(const BigInteger&) const;
+        BigInteger operator*(const BigInteger&) const;
+        BigInteger operator/(const BigInteger&) const;
+        BigInteger operator%(const BigInteger&) const;
 
         //assignment
-        BigInteger& operator=(const BigInteger);
-        BigInteger& operator+=(const BigInteger);
-        BigInteger& operator-=(const BigInteger);
-        BigInteger& operator*=(const BigInteger);
-        BigInteger& operator/=(const BigInteger);
-        BigInteger& operator%=(const BigInteger);
+        BigInteger operator=(const BigInteger&);
+        BigInteger operator+=(const BigInteger&);
+        BigInteger operator-=(const BigInteger&);
+        BigInteger operator*=(const BigInteger&);
+        BigInteger operator/=(const BigInteger&);
+        BigInteger operator%=(const BigInteger&);
 
         //relational
-        bool operator==(const BigInteger) const;
-        bool operator!=(const BigInteger) const;
-        bool operator>=(const BigInteger) const;
-        bool operator<=(const BigInteger) const;
-        bool operator>(const BigInteger) const;
-        bool operator<(const BigInteger) const;
+        bool operator==(const BigInteger&) const;
+        bool operator!=(const BigInteger&) const;
+        bool operator>=(const BigInteger&) const;
+        bool operator<=(const BigInteger&) const;
+        bool operator>(const BigInteger&) const;
+        bool operator<(const BigInteger&) const;
 
         //stream
         friend std::ostream& operator<<(std::ostream&, const BigInteger&);
