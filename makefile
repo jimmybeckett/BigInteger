@@ -1,16 +1,17 @@
 CC=g++
 CFLAGS=-Wall -Werror -g -std=c++11
-MAINFILES=*.cpp
 TESTFILE=test.out
-
 SOURCEFILES=$(shell find . -type f -name "*.cpp")
 OBJECTS=$(addsuffix .o, $(basename $(SOURCEFILES)))
 
-%.o: %.cpp
+%.o: %.cpp BigInteger.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
-all: $(OBJECTS) BigInteger.h
+all: $(OBJECTS)
 	$(CC) $(CFLAGS) $(OBJECTS) -o $(TESTFILE)
+
+test: all
+	./$(TESTFILE)
 
 clean:
 	rm -f $(OBJECTS)
