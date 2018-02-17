@@ -10,13 +10,19 @@ namespace euler {
     class BigInteger { 
         std::vector<int> value; 
         bool isNegative;
+        BigInteger trim(); //Remove leading zeros
+        void addToFront(const int digit) { this->value.insert(this->value.begin(), digit); }
+        void addToBack(const int digit) { this->value.insert(this->value.end(), digit); }
+        BigInteger pad(int) const; //Pad this with zeros
+        BigInteger multiply(const BigInteger& other) const;
+
     public: 
         //constructors
         BigInteger() { this->isNegative = false; }
         BigInteger(const int num) { this->init(num); }
         BigInteger(const std::string str) { this->init(str); }
         BigInteger(const BigInteger& b) { this->init(b); }
-        void init(const int);
+        void init(const int num) { this->init(std::to_string(num)); }
         void init(const std::string);
         void init(const BigInteger&);
 
@@ -24,8 +30,8 @@ namespace euler {
         std::string toString() const;
         int digits() const { return this->value.size(); }
         BigInteger abs() const { BigInteger t (*this); t.isNegative = false; return t; }
-        void addToFront(const int digit) { this->value.insert(this->value.begin(), digit); }
-        void addToBack(const int digit) { this->value.insert(this->value.end(), digit); }
+        BigInteger range(const int, const int) const; //Returns a BigInteger with a value equal to this->value[int, int]
+        BigInteger pow10(int) const; //Shortcut for b * 10^exp
    
         //operators
         //unary
@@ -41,7 +47,7 @@ namespace euler {
         //arithmetic
         BigInteger operator+(const BigInteger&) const;
         BigInteger operator-(const BigInteger&) const;
-        BigInteger operator*(const BigInteger&) const;
+        BigInteger operator*(const BigInteger&) const; //Karatsuba implementation
         BigInteger operator/(const BigInteger&) const;
         BigInteger operator%(const BigInteger&) const;
 

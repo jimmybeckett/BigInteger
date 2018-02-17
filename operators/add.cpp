@@ -13,24 +13,25 @@ namespace euler {
         if (*this < 0 && b < 0)
             return -(-*this + -b);
         BigInteger temp;
-        int i;
+        int i = 0;
         int carry = 0;
         int minDigits = (int)fmin(this->digits(), b.digits());
         for (i = 0; i < minDigits; i++) {
             int n = (*this)[i] + b[i] + carry;
-            temp.addToFront((int)std::abs(n >= 10 ? n - 10 : n));
+            temp.addToFront(n >= 10 ? n - 10 : n);
+            carry = n >= 10 ? 1 : 0;
+        }
+        for (; i < this->digits(); i++) {
+            int n = (*this)[i] + carry;
+            temp.addToFront(n >= 10 ? n - 10 : n);
+            carry = n >= 10 ? 1 : 0;
+        }
+        for (; i < b.digits(); i++) {
+            int n = b[i] + carry;
+            temp.addToFront(n >= 10 ? n - 10 : n);
             carry = n >= 10 ? 1 : 0;
         }
         temp.addToFront(carry);
-        if (i < this->digits()) temp[i] += (*this)[i];
-        if (i < b.digits()) temp[i] += b[i];
-        i++;
-        while (i < this->digits())
-            temp.addToFront((*this)[i++]);
-        while (i < b.digits())
-            temp.addToFront(b[i++]);
-        while (temp[--i] == 0)
-            temp.value.erase(temp.value.begin());
-        return temp;
+        return temp.trim();
     }
 }

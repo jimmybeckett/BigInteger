@@ -38,8 +38,6 @@ namespace euler {
             temp.addToFront((*this)[i++]);
         while (i < b.digits())
             temp.addToFront(b[i++]);
-        while (temp[--i] == 0)
-            temp.value.erase(temp.value.begin());
-        return temp;
+        return temp.trim();
     }
 }

@@ -1,10 +1,6 @@
 #include "BigInteger.h"
 
 namespace euler {
-    void BigInteger::init(const int num) {
-        this->init(std::to_string(num));
-    }
-
     void BigInteger::init(const std::string str) {
         this->value.clear();
         this->isNegative = str[0] == '-';

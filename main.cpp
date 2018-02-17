@@ -10,6 +10,9 @@ int main() {
     greaterThanTest();
     subscriptTest();
     additionTest();
+    multiplicationTest();
+    rangeTest();
+    pow10Test();
     std::cout << "all unit tests passed" << std::endl;
     return 0;
 }
