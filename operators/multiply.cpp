@@ -8,12 +8,11 @@ namespace euler {
             BigInteger s (this->digits() <= other.digits() ? *this : other);
             BigInteger t;
             int carry = 0;
-            for (int i = 0; i < l.digits(); i++) {
+            for (int i = l.digits() - 1; i >= 0; i--) {
                 t.addToFront((l[i] * s[0] + carry) % 10);
                 carry = (l[i] * s[0] + carry) / 10;
             }
-            if (carry != 0)
-                t.addToFront(carry);
+            t.addToFront(carry);
             return t.trim();
         }
         int n = fmax(this->digits(), other.digits());
@@ -38,7 +37,7 @@ namespace euler {
         if (*this == 0 || other == 0)
             return BigInteger (0);
         BigInteger ans = this->abs().multiply(other.abs());
-        ans.isNegative = !(*this < 0 == other < 0);
+        ans.isNegative = *this < 0 != other < 0;
         return ans; 
     }
 }

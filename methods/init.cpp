@@ -5,14 +5,14 @@ namespace euler {
         this->value.clear();
         this->isNegative = str[0] == '-';
         for (int i = this->isNegative ? 1 : 0; i < str.length(); i++)
-            this->value.push_back(str[i] - '0');
+            this->addToBack(str[i] - '0');
         this->trim();
     }
 
     void BigInteger::init(const BigInteger& b) {
         this->value.clear();
         this->isNegative = b.isNegative;
-        for (int i = b.digits() - 1; i >= 0; i--)
-            this->value.push_back(b[i]);
+        for (int i = 0; i < b.digits(); i++)
+            this->addToBack(b[i]);
     }
 }

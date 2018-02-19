@@ -2,8 +2,7 @@
 
 namespace euler {
     BigInteger BigInteger::trim() {
-        int i = this->digits();
-        while ((*this)[--i] == 0 && this->digits() > 1)
+        while (this->digits() > 1 && (*this)[0] == 0)
             this->value.erase(this->value.begin());
         return *this;
     }

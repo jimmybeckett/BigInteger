@@ -40,7 +40,7 @@ namespace euler {
         BigInteger& operator++() { *this += 1; return *this; } //++x
         BigInteger operator--(int) { BigInteger temp (*this); *this -= 1; return temp; } //x--
         BigInteger& operator--() { *this -= 1; return *this; } //--x
-        int& operator[](const int); 
+        int& operator[](const int); //IMPORTANT: BigInteger (12345)[0] == 5; This is because subscript considers the least significant digit to be at position 0
         int operator[](const int) const;
 
         //arithmetic

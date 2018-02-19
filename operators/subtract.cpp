@@ -1,4 +1,5 @@
 #include "../BigInteger.h"
+#include "math.h"
 
 namespace euler {
     BigInteger BigInteger::operator-(const BigInteger& b) const {
@@ -17,27 +18,23 @@ namespace euler {
         if (this->abs() < b.abs())
             return -(b.abs() - this->abs());
         BigInteger temp;
-        int i;
+        int i, j;
         int carry = 0;
-        for (i = 0; i < this->digits(); i++) {
-            int bi = i < b.digits() ? b[i] : 0;
-            if ((*this)[i] + carry < bi) {
-                temp.addToFront((*this)[i] - bi + carry + 10);
-                carry = -1;
-            }
-            else {
-                temp.addToFront((*this)[i] - bi + carry);
-                carry = 0;
-            }
+        for (i = this->digits() - 1, j = b.digits() - 1; i >= 0 && j >= 0; i--, j--) {
+            int n = (*this)[i] - b[j] + carry;
+            temp.addToFront(n < 0 ? n + 10 : n);
+            carry = n < 0 ? -1 : 0;
         }
-        temp.addToFront(carry);
-        if (i < this->digits()) temp[i] += (*this)[i];
-        if (i < b.digits()) temp[i] += b[i];
-        i++;
-        while (i < this->digits())
-            temp.addToFront((*this)[i++]);
-        while (i < b.digits())
-            temp.addToFront(b[i++]);
+        for (; i >= 0; i--) {
+            int n = (*this)[i] + carry;
+            temp.addToFront(std::abs(n));
+            carry = n < 0;
+        }
+        for (; j >= 0; j--) {
+            int n = b[j] + carry;
+            temp.addToFront(std::abs(n));
+            carry = n < 0;
+        }
         return temp.trim();
     }
 }

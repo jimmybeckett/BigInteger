@@ -5,7 +5,7 @@ namespace euler {
         if (b == 0) 
             return BigInteger (1);
         BigInteger t (*this);
-        for (BigInteger i = 0; i < b - 1; i++)
+        for (BigInteger i (0); i < b - 1; i++)
             t *= *this;
         return t;
     }
