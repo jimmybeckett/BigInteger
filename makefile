@@ -1,19 +1,30 @@
 CC=g++
 CFLAGS=-Wall -Werror -g -std=c++11
-TESTFILE=test.out
-TESTLIBRARY=libunit_test_framework.lib
-SOURCEFILES=$(shell find . -type f -name "*.cpp")
-OBJECTS=$(addsuffix .o, $(basename $(SOURCEFILES)))
+MAINFILE=main.cpp
+MAINOBJECT=$(addsuffix .o, $(basename $(MAINFILE)))
+HEADER=BigInteger.h
+OUTFILE=test.out
 
-%.o: %.cpp BigInteger.h
+SOURCEDIRS:=methods operators
+SOURCEFILES=$(foreach dir, $(SOURCEDIRS), $(shell find $(dir) -type f -name "*.cpp"))
+SOURCEOBJECTS=$(addsuffix .o, $(basename $(SOURCEFILES)))
+
+TESTDIRS=unitTests
+TESTFILES=$(foreach dir, $(TESTDIRS), $(shell find $(dir) -type f -name "*.cpp"))
+TESTOBJECTS=$(addsuffix .o, $(basename $(TESTFILES)))
+
+
+all: $(SOURCEOBJECTS) $(MAINOBJECT) $(HEADER)
+	$(CC) $(CFLAGS) $(SOURCEOBJECTS) $(MAINOBJECT) -o $(OUTFILE)
+	./$(OUTFILE)
+
+test: $(SOURCEOBJECTS) $(TESTOBJECTS) $(MAINOBJECT) $(HEADER)
+	$(CC) $(CFLAGS) $(SOURCEOBJECTS) $(TESTOBJECTS) $(MAINOBJECT) -o $(OUTFILE)
+	./$(OUTFILE)
+
+%.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
-all: $(OBJECTS)
-	$(CC) $(CFLAGS) $(OBJECTS) -o $(TESTFILE)
-
-test: all
-	./$(TESTFILE)
-
 clean:
-	rm -f $(OBJECTS)
-	rm -f $(TESTFILE)
+	rm -f $(SOURCEOBJECTS) $(TESTOBJECTS) $(MAINOBJECT)
+	rm -f $(OUTFILE)
