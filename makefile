@@ -15,6 +15,9 @@ TESTOBJS=$(addsuffix .o, $(basename $(TESTFILES)))
 
 all: $(SRCOBJS) $(HEADER)
 
+static: all
+	ar rvs lib/libBigInteger.a $(SRCOBJS) $(HEADER)
+
 debug: all $(MAINDEBUGOBJ)
 	$(CC) $(CFLAGS) $(SRCOBJS) $(MAINDEBUGOBJ) -o $(OUTFILE)
 	./$(OUTFILE)
