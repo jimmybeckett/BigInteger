@@ -1,4 +1,5 @@
 #include "../BigInteger.h"
+#include <math.h>
 
 namespace euler {
     BigInteger BigInteger::operator+(const BigInteger& b) const {

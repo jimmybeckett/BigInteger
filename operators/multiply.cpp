@@ -1,6 +1,8 @@
 #include "../BigInteger.h" 
+#include <math.h>
+
 namespace euler { 
-    BigInteger BigInteger::multiply(const BigInteger& other) const {
+    BigInteger BigInteger::multiply(const BigInteger& other) const { //Karatsuba algorithm implementation
         if (this->digits() == 1 || other.digits() == 1) { //base case
             BigInteger l (this->digits() > other.digits() ? *this : other);
             BigInteger s (this->digits() <= other.digits() ? *this : other);
@@ -24,10 +26,15 @@ namespace euler {
         BigInteger t2 = b * d;
         BigInteger abcd = (a + b) * (c + d);
         BigInteger t3 = abcd - t2 - t1;
-        return (t1.pow10(n) + t2 + t3.pow10(n / 2)).trim();
+        for (int i = 0; i < n; i++) {
+            t1.addToBack(0);
+            if (i < n / 2) 
+                t3.addToBack(0);
+        }
+        return t1 + t2 + t3;
     }
 
-    BigInteger BigInteger::operator*(const BigInteger& other) const { //Karatsuba algorithm implementation
+    BigInteger BigInteger::operator*(const BigInteger& other) const {
         if (*this == 0 || other == 0)
             return BigInteger (0);
         BigInteger ans = this->abs().multiply(other.abs());

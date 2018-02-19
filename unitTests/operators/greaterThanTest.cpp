@@ -1,7 +1,8 @@
-#include "../unitTests.h"
+#include "../../BigInteger.h"
 
 namespace euler {
     void greaterThanTest() {
+        /*
         std::cout << "running > tests" << std::endl;
         int n1 = 123457;
         int n2 = 123456;
@@ -15,5 +16,6 @@ namespace euler {
         delete b1;
         delete b2;
         std::cout << "> tests passed" << std::endl;
+        */
     }
 }

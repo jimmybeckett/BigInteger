@@ -5,6 +5,6 @@ namespace euler {
         BigInteger b;
         for (int i = this->digits() - ind1 - 1; i >= this->digits() - ind2 - 1; i--)
             b.addToBack((*this)[i]);
-        return b;
+        return b.trim();
     }
 }

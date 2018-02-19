@@ -1,4 +1,4 @@
-#include "BigInteger.h"
+#include "../BigInteger.h"
 
 namespace euler {
     void BigInteger::init(const std::string str) {
@@ -6,6 +6,7 @@ namespace euler {
         this->isNegative = str[0] == '-';
         for (int i = this->isNegative ? 1 : 0; i < str.length(); i++)
             this->value.push_back(str[i] - '0');
+        this->trim();
     }
 
     void BigInteger::init(const BigInteger& b) {

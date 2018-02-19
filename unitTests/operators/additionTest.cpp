@@ -1,17 +1,12 @@
-#include "../unitTests.h"
+#include <boost/test/unit_test.hpp>
+#include "../../BigInteger.h"
 
-namespace euler {
-    void additionTest() {
-        std::cout << "running + tests" << std::endl;
-        int n1 = 123321;
-        int n2 = 432232;
-        BigInteger b1 (n1);
-        BigInteger b2 (n2);
-        for (int i = 0; i < 1000; i++) {
-            b1.init(n1 = (int)(std::rand() % 10000000 * (std::rand() < RAND_MAX / 2 ? -1 : 1)));
-            b2.init(n2 = (int)(std::rand() % 10000000 * (std::rand() < RAND_MAX / 2 ? -1 : 1)));
-            assert(b1 + b2 == n1 + n2);
-        }
-        std::cout << "+ tests passed" << std::endl;
-    }
+using namespace euler;
+
+BOOST_AUTO_TEST_SUITE(operator_addition);
+
+BOOST_AUTO_TEST_CASE(large_num) {
+    BOOST_CHECK(BigInteger ("1290910898752125927125") + BigInteger ("19875986310183520") == BigInteger ("1290930774738436110645"));
 }
+
+BOOST_AUTO_TEST_SUITE_END();
