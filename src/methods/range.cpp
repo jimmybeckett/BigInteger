@@ -1,4 +1,4 @@
-#include "../BigInteger.h"
+#include "../../include/BigInteger.h"
 
 namespace euler {
     BigInteger BigInteger::range(const int ind1, const int ind2) const {

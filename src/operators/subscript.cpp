@@ -1,4 +1,4 @@
-#include "../BigInteger.h"
+#include "../../include/BigInteger.h"
 
 namespace euler {
     int& BigInteger::operator[](const int index) {

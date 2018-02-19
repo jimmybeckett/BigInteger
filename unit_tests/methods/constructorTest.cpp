@@ -1,5 +1,5 @@
+#include "../../include/BigInteger.h"
 #include <boost/test/unit_test.hpp>
-#include "../../BigInteger.h"
 #include <boost/test/output_test_stream.hpp>
 
 using namespace euler;

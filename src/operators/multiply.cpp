@@ -1,4 +1,4 @@
-#include "../BigInteger.h" 
+#include "../../include/BigInteger.h"
 #include <math.h>
 
 namespace euler { 

@@ -1,4 +1,4 @@
-#include "../BigInteger.h"
+#include "../../include/BigInteger.h"
 
 namespace euler {
     void BigInteger::init(const std::string str) {

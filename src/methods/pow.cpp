@@ -1,4 +1,4 @@
-#include "../BigInteger.h"
+#include "../../include/BigInteger.h"
 
 namespace euler {
     BigInteger BigInteger::pow(const BigInteger& b) const {
