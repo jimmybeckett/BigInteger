@@ -1,7 +1,9 @@
 CC=g++
 CFLAGS=-Wall -Werror -g -std=c++11
-MAINFILE=main.cpp
-MAINOBJECT=$(addsuffix .o, $(basename $(MAINFILE)))
+MAINTEST=main_test.cpp
+MAINTESTOBJ=$(addsuffix .o, $(basename $(MAINTEST)))
+MAINDEBUG=main_debug.cpp
+MAINDEBUGOBJ=$(addsuffix .o, $(basename $(MAINDEBUG)))
 HEADER=BigInteger.h
 OUTFILE=test.out
 
@@ -14,17 +16,17 @@ TESTFILES=$(foreach dir, $(TESTDIRS), $(shell find $(dir) -type f -name "*.cpp")
 TESTOBJECTS=$(addsuffix .o, $(basename $(TESTFILES)))
 
 
-all: $(SOURCEOBJECTS) $(MAINOBJECT) $(HEADER)
-	$(CC) $(CFLAGS) $(SOURCEOBJECTS) $(MAINOBJECT) -o $(OUTFILE)
+debug: $(SOURCEOBJECTS) $(MAINDEBUGOBJ) $(HEADER)
+	$(CC) $(CFLAGS) $(SOURCEOBJECTS) $(MAINDEBUGOBJ) -o $(OUTFILE)
 	./$(OUTFILE)
 
-test: $(SOURCEOBJECTS) $(TESTOBJECTS) $(MAINOBJECT) $(HEADER)
-	$(CC) $(CFLAGS) $(SOURCEOBJECTS) $(TESTOBJECTS) $(MAINOBJECT) -o $(OUTFILE)
+test: $(SOURCEOBJECTS) $(TESTOBJECTS) $(MAINTESTOBJ) $(HEADER)
+	$(CC) $(CFLAGS) $(SOURCEOBJECTS) $(TESTOBJECTS) $(MAINTESTOBJ) -o $(OUTFILE)
 	./$(OUTFILE)
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(SOURCEOBJECTS) $(TESTOBJECTS) $(MAINOBJECT)
+	rm -f $(SOURCEOBJECTS) $(TESTOBJECTS) $(MAINTESTOBJ) $(MAINDEBUGOBJ)
 	rm -f $(OUTFILE)
