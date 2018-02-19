@@ -19,7 +19,7 @@ debug: all $(MAINDEBUGOBJ)
 	$(CC) $(CFLAGS) $(SRCOBJS) $(MAINDEBUGOBJ) -o $(OUTFILE)
 	./$(OUTFILE)
 
-test: all $(TESTOBJS) $(MAINTESTOBJ)
+test: all $(TESTOBJS)
 	$(CC) $(CFLAGS) $(SRCOBJS) $(TESTOBJS) $(MAINTESTOBJ) -o $(OUTFILE)
 	./$(OUTFILE)
 
