@@ -14,20 +14,10 @@ namespace euler {
         if (*this < 0 && b < 0)
             return -(-*this + -b);
         BigInteger temp;
-        int i, j;
         int carry = 0;
-        for (i = this->digits() - 1, j = b.digits() - 1; i >= 0 && j >= 0; i--, j--) {
-            int n = (*this)[i] + b[j] + carry;
-            temp.addToFront(n % 10);
-            carry = n / 10;
-        }
-        for (; i >= 0; i--) {
-            int n = (*this)[i] + carry;
-            temp.addToFront(n % 10);
-            carry = n / 10;
-        }
-        for (; j >= 0; j--) {
-            int n = b[j] + carry;
+        int i, j;
+        for (i = this->digits() - 1, j = b.digits() - 1; i >= 0 || j >= 0; i--, j--) {
+            int n = (i >= 0 ? (*this)[i] : 0) + (j >= 0 ? b[j] : 0) + carry;
             temp.addToFront(n % 10);
             carry = n / 10;
         }
