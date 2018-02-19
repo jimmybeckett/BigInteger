@@ -1,5 +1,6 @@
 #include <boost/test/unit_test.hpp>
 #include "../../BigInteger.h"
+#include <boost/test/output_test_stream.hpp>
 
 using namespace euler;
 
@@ -34,7 +35,6 @@ BOOST_AUTO_TEST_CASE(construct_negative_BigInteger) {
 }
 
 BOOST_AUTO_TEST_CASE(trim_positive) {
-    BigInteger b ("00034");
     BOOST_CHECK(BigInteger ("000304") == 304);
 }
 

@@ -1,21 +1,24 @@
+#include <boost/test/unit_test.hpp>
 #include "../../BigInteger.h"
 
-namespace euler {
-    void greaterThanTest() {
-        /*
-        std::cout << "running > tests" << std::endl;
-        int n1 = 123457;
-        int n2 = 123456;
-        BigInteger* b1 = new BigInteger(n1);
-        BigInteger* b2 = new BigInteger(n2);
-        for (int i = 0; i < 1000; i++) {
-            b1->init(n1 = std::rand() % 100000 * (std::rand() < RAND_MAX / 2 ? -1 : 1));
-            b2->init(n2 = std::rand() % 100000 * (std::rand() < RAND_MAX / 2 ? -1 : 1));
-            assert(*b1 > *b2 == n1 > n2);
-        }
-        delete b1;
-        delete b2;
-        std::cout << "> tests passed" << std::endl;
-        */
-    }
+using namespace euler;
+
+BOOST_AUTO_TEST_SUITE(operator_greater_than);
+
+BOOST_AUTO_TEST_CASE(large_num) {
+    BOOST_CHECK(BigInteger (908725) > BigInteger (12552));
 }
+
+BOOST_AUTO_TEST_CASE(same_num_digits) {
+    BOOST_CHECK(BigInteger (25678) > BigInteger (15679));
+}
+
+BOOST_AUTO_TEST_CASE(positive_greater_than_negative) {
+    BOOST_CHECK(BigInteger (9272) > BigInteger (-98729872));
+}
+
+BOOST_AUTO_TEST_CASE(negative_greater_than_negative) {
+    BOOST_CHECK(BigInteger (-727235) > BigInteger (-98728288));
+}
+
+BOOST_AUTO_TEST_SUITE_END();

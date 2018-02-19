@@ -1,19 +1,21 @@
+#include <boost/test/unit_test.hpp>
 #include "../../BigInteger.h"
 
-namespace euler {
-    void equalsTest() {
-        /*
-        std::cout << "running == tests" << std::endl;
-        int n = 123456;
-        BigInteger b1 (n);
-        BigInteger b2 (n);
-        for (int i = 0; i < 10000; i++) {
-            n = std::rand() % 100000 * (std::rand() < RAND_MAX / 2 ? -1 : 1);
-            b1.init(n);
-            b2.init(n);
-            assert(b1 == b2);
-        }
-        std::cout << "== tests passed" << std::endl;
-        */
-    }
+using namespace euler;
+
+BOOST_AUTO_TEST_SUITE(operator_equality);
+
+BOOST_AUTO_TEST_CASE(large_num) {
+    BOOST_CHECK(BigInteger (87621672) == BigInteger (87621672));
+    BOOST_CHECK(BigInteger (87621672) != BigInteger (87621671));
 }
+
+BOOST_AUTO_TEST_CASE(negative) {
+    BOOST_CHECK(BigInteger (1234) != BigInteger (-1234));
+}
+
+BOOST_AUTO_TEST_CASE(zero) {
+    BOOST_CHECK(BigInteger (156) + BigInteger (-156) == BigInteger (0));
+}
+
+BOOST_AUTO_TEST_SUITE_END();

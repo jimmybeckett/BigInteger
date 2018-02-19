@@ -1,16 +1,16 @@
+#include <boost/test/unit_test.hpp>
 #include "../../BigInteger.h"
-#include <string>
 
-namespace euler {
-    void subscriptTest() {
-        /*
-        std::cout << "running [] operator tests" << std::endl;
-        std::string str = "123456";
-        BigInteger* b = new BigInteger(str);
-        for (int i = 0; i < str.length(); i++)
-            assert(str[str.length() - i - 1] - '0' == (*b)[i]);
-        delete b;
-        std::cout << "[] tests passed" << std::endl;
-        */
-    }
+using namespace euler;
+
+BOOST_AUTO_TEST_SUITE(operator_subscript);
+
+BOOST_AUTO_TEST_CASE(large_num) {
+    BOOST_CHECK(BigInteger ("1234567")[5] == 6);
 }
+
+BOOST_AUTO_TEST_CASE(negative) {
+    BOOST_CHECK(BigInteger (-8762)[1] == 7);
+}
+
+BOOST_AUTO_TEST_SUITE_END();
