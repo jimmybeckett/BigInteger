@@ -23,8 +23,7 @@ namespace euler {
         BigInteger d = other.pad(n - other.digits()).range(n / 2, n - 1).trim();
         BigInteger t1 = a * c;
         BigInteger t2 = b * d;
-        BigInteger abcd = (a + b) * (c + d);
-        BigInteger t3 = abcd - t2 - t1;
+        BigInteger t3 = (a + b) * (c + d) - t2 - t1;
         for (int i = 0; i < n; i++) {
             t1.addToBack(0);
             if (i < n / 2) 

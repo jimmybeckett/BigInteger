@@ -30,7 +30,7 @@ namespace euler {
         int digits() const { return this->value.size(); }
         BigInteger abs() const { BigInteger t (*this); t.isNegative = false; return t; }
         BigInteger range(const int, const int) const; //Returns a BigInteger with a value equal to this->value[int, int]
-        BigInteger pow(const BigInteger&) const;
+        BigInteger pow(const int) const;
    
         //operators
         //unary
