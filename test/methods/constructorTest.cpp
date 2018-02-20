@@ -7,11 +7,11 @@ using namespace euler;
 BOOST_AUTO_TEST_SUITE(constructor);
 
 BOOST_AUTO_TEST_CASE(construct_positive_int) {
-    BOOST_CHECK(BigInteger (54321)  == 54321);
+    BOOST_CHECK(BigInteger (54321)  == BigInteger (54321));
 }
 
 BOOST_AUTO_TEST_CASE(construct_negative_int) {
-    BOOST_CHECK(BigInteger (-12345) == -12345);
+    BOOST_CHECK(BigInteger (-12345) == BigInteger (-12345));
 }
 
 BOOST_AUTO_TEST_CASE(construct_postive_string) {
@@ -35,15 +35,19 @@ BOOST_AUTO_TEST_CASE(construct_negative_BigInteger) {
 }
 
 BOOST_AUTO_TEST_CASE(trim_positive) {
-    BOOST_CHECK(BigInteger ("000304") == 304);
+    BOOST_CHECK(BigInteger ("000304") == BigInteger (304));
 }
 
 BOOST_AUTO_TEST_CASE(trim_negative) {
-    BOOST_CHECK(BigInteger ("-0020020") == -20020);
+    BOOST_CHECK(BigInteger ("-0020020") == BigInteger (-20020));
 }
 
 BOOST_AUTO_TEST_CASE(trim_all_zeros) {
-    BOOST_CHECK(BigInteger ("00000")  == 0);
+    BOOST_CHECK(BigInteger ("00000")  == BigInteger (0));
+}
+
+BOOST_AUTO_TEST_CASE(negative_0) {
+    BOOST_CHECK(BigInteger ("-0") == BigInteger (0));
 }
 
 BOOST_AUTO_TEST_SUITE_END();
