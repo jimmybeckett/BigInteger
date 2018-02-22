@@ -13,7 +13,8 @@ namespace euler {
         void addToFront(const int digit) { this->value.insert(this->value.begin(), digit); }
         void addToBack(const int digit) { this->value.insert(this->value.end(), digit); }
         BigInteger pad(int) const; //Pad this with zeros
-        BigInteger multiply(const BigInteger& other) const;
+        BigInteger multiply(const BigInteger&) const;
+        BigInteger divide(const BigInteger&, BigInteger&) const;
         void init(const int num) { this->init(std::to_string(num)); }
         void init(const std::string);
         void init(const BigInteger&);
@@ -40,14 +41,23 @@ namespace euler {
         BigInteger& operator++() { *this += 1; return *this; } //++x
         BigInteger operator--(int) { BigInteger temp (*this); *this -= 1; return temp; } //x--
         BigInteger& operator--() { *this -= 1; return *this; } //--x
-        int& operator[](const int); //IMPORTANT: BigInteger (12345)[0] == 5; This is because subscript considers the least significant digit to be at position 0
+        int& operator[](const int); 
+        //IMPORTANT
+        /* (BigInteger (12345)[0]) == 1, not 5.
+         * This decision was made in order to make the subscript operator more intuitive, it's 
+         * current behavior mirrors the behavior of the subscript operator with strings.
+         * An argument can be made for the behavior (BigInteger (12345)[0]) == 5, so that the
+         * subscript matches the power of the base. 
+         * However, but this behavior can be reproduced by using the digits() function.
+         * BigInteger t (12345); t[t.digits() - 1 - 0] == 5;
+         */
         int operator[](const int) const;
 
         //arithmetic
         BigInteger operator+(const BigInteger&) const;
         BigInteger operator-(const BigInteger&) const;
         BigInteger operator*(const BigInteger&) const; //Karatsuba implementation
-        BigInteger operator/(const BigInteger&) const;
+        BigInteger operator/(const BigInteger&) const; //Algorithm D implementation
         BigInteger operator%(const BigInteger&) const;
 
         //assignment

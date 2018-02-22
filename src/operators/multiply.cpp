@@ -33,10 +33,10 @@ namespace euler {
     }
 
     BigInteger BigInteger::operator*(const BigInteger& other) const {
-        if (*this == 0 || other == 0)
+        if (*this == BigInteger (0) || other == BigInteger (0))
             return BigInteger (0);
         BigInteger ans = this->abs().multiply(other.abs());
-        ans.isNegative = *this < 0 != other < 0;
+        ans.isNegative = *this < BigInteger (0) != other < BigInteger (0);
         return ans; 
     }
 }

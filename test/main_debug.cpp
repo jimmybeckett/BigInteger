@@ -4,9 +4,10 @@
 using namespace euler;
 
 int main() {
-    //std::cout << (BigInteger ("23456789876543456789") * BigInteger ("9876567876543234")) << std::endl;
-    //std::cout << (BigInteger (1234) * BigInteger (5678)) << std::endl;
-    //std::cout << (BigInteger (54)).pow(3) << std::endl;
-    std::cout << (BigInteger (12) + BigInteger (59989)) << std::endl;
+    //std::cout << (BigInteger (73997) / BigInteger (2387)) << std::endl;
+    //std::cout << (BigInteger (123456789)).pow(500) << std::endl;
+    std::cout << (BigInteger (136) / BigInteger (8)) << std::endl;
+    std::cout << (BigInteger (316097) / BigInteger (102)) << std::endl;
+    std::cout << (BigInteger (316097) % BigInteger (102)) << std::endl;
     return 0;
 }
