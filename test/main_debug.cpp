@@ -4,10 +4,11 @@
 using namespace euler;
 
 int main() {
-    //std::cout << (BigInteger (73997) / BigInteger (2387)) << std::endl;
-    //std::cout << (BigInteger (123456789)).pow(500) << std::endl;
-    std::cout << (BigInteger (136) / BigInteger (8)) << std::endl;
-    std::cout << (BigInteger (316097) / BigInteger (102)) << std::endl;
-    std::cout << (BigInteger (316097) % BigInteger (102)) << std::endl;
+    //std::cout << (BigInteger ("8712350978253") / BigInteger ("-187612") == BigInteger ("-464099")) << std::endl;
+    std::cout << (1987259 % 125215) << std::endl;
+    std::cout << (122 % 98231) << std::endl;
+    std::cout << (-99218725 % 25125) << std::endl;
+    std::cout << (1151 % -882) << std::endl;
+    std::cout << (-127192 % -12925) << std::endl;
     return 0;
 }
