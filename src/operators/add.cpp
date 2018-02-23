@@ -2,15 +2,15 @@
 
 namespace euler {
     BigInteger BigInteger::operator+(const BigInteger& b) const {
-        if (*this == 0) 
+        if (*this == BigInteger (0)) 
             return b;
-        if (b == 0) 
+        if (b == BigInteger (0)) 
             return *this;
-        if (*this < 0 && b > 0)
+        if (*this < BigInteger (0) && b > BigInteger (0))
             return b - -*this;
-        if (*this > 0 && b < 0)
+        if (*this > BigInteger (0) && b < BigInteger (0))
             return *this - -b;
-        if (*this < 0 && b < 0)
+        if (*this < BigInteger (0) && b < BigInteger (0))
             return -(-*this + -b);
         BigInteger temp;
         int carry = 0;
