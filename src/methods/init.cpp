@@ -4,8 +4,11 @@ namespace euler {
     void BigInteger::init(const std::string str) {
         this->value.clear();
         this->isNegative = str[0] == '-';
-        for (int i = this->isNegative ? 1 : 0; i < str.length(); i++)
+        for (int i = this->isNegative ? 1 : 0; i < str.length(); i++) {
+            if (str[i] < 48 || str[i] > 57)
+                throw std::invalid_argument("invalid_argument in BigInteger::init()");
             this->addToBack(str[i] - '0');
+        }
         this->trim();
     }
 

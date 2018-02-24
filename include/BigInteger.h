@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <stdexcept>
 
 namespace euler { 
     class BigInteger { 

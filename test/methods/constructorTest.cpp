@@ -1,4 +1,4 @@
-#include "../../include/BigInteger.h"
+#include "../../include/BigInteger.h" 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/output_test_stream.hpp>
 
@@ -48,6 +48,12 @@ BOOST_AUTO_TEST_CASE(trim_all_zeros) {
 
 BOOST_AUTO_TEST_CASE(negative_0) {
     BOOST_CHECK(BigInteger ("-0") == BigInteger (0));
+}
+
+bool validate_invalid_argument_exception (std::exception const& ex) { return strcmp(ex.what(), "invalid_argument in BigInteger::init()") == 0; }
+
+BOOST_AUTO_TEST_CASE(invalid_argument_exception) {
+    BOOST_CHECK_EXCEPTION(BigInteger ("a124"), std::exception, validate_invalid_argument_exception);
 }
 
 BOOST_AUTO_TEST_SUITE_END();
