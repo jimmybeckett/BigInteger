@@ -11,12 +11,12 @@ namespace euler {
         bool isNegative;
 
         BigInteger trim(); //Remove leading zeros
-        inline void addToFront(const int digit) { this->value.insert(this->value.begin(), digit); }
-        inline void addToBack(const int digit) { this->value.insert(this->value.end(), digit); }
+        void addToFront(const int digit) { this->value.insert(this->value.begin(), digit); }
+        void addToBack(const int digit) { this->value.insert(this->value.end(), digit); }
         BigInteger pad(int) const; //Pad this with zeros
         BigInteger multiply(const BigInteger&) const;
         BigInteger divideAndRemainder(const BigInteger&, BigInteger&) const;
-        inline void init(const int num) { this->init(std::to_string(num)); }
+        void init(const int num) { this->init(std::to_string(num)); }
         void init(const std::string);
         void init(const BigInteger&);
 
@@ -31,20 +31,20 @@ namespace euler {
         std::string toString() const;
         int toInt() const;
         int digits() const { return this->value.size(); }
-        inline BigInteger abs() const { BigInteger t (*this); t.isNegative = false; return t; }
+        BigInteger abs() const { BigInteger t (*this); t.isNegative = false; return t; }
         BigInteger range(const int, const int) const; //Returns a BigInteger with a value equal to this->value[int, int]
         BigInteger pow(const int) const;
-        inline BigInteger max(const BigInteger& b1, const BigInteger& b2) const { return b1 > b2 ? b1 : b2; }
-        inline BigInteger min(const BigInteger& b1, const BigInteger& b2) const { return b1 < b2 ? b1 : b2; }
+        BigInteger max(const BigInteger& b1, const BigInteger& b2) const { return b1 > b2 ? b1 : b2; }
+        BigInteger min(const BigInteger& b1, const BigInteger& b2) const { return b1 < b2 ? b1 : b2; }
    
         //operators
         //unary
-        inline BigInteger& operator+() { return *this; }
-        inline BigInteger operator-() const { BigInteger t (*this); t.isNegative = !t.isNegative; return t; }
-        inline BigInteger operator++(int) { BigInteger temp (*this); *this += 1; return temp; } //x++
-        inline BigInteger& operator++() { *this += 1; return *this; } //++x
-        inline BigInteger operator--(int) { BigInteger temp (*this); *this -= 1; return temp; } //x--
-        inline BigInteger& operator--() { *this -= 1; return *this; } //--x
+        BigInteger& operator+() { return *this; }
+        BigInteger operator-() const { BigInteger t (*this); t.isNegative = !t.isNegative; return t; }
+        BigInteger operator++(int) { BigInteger temp (*this); *this += 1; return temp; } //x++
+        BigInteger& operator++() { *this += 1; return *this; } //++x
+        BigInteger operator--(int) { BigInteger temp (*this); *this -= 1; return temp; } //x--
+        BigInteger& operator--() { *this -= 1; return *this; } //--x
         int& operator[](const int); 
         //IMPORTANT
         /* (BigInteger (12345)[0]) == 1, not 5.
@@ -65,20 +65,20 @@ namespace euler {
         BigInteger operator%(const BigInteger&) const;
 
         //assignment
-        inline BigInteger operator=(const BigInteger& b) { this->init(b); return *this; }
-        inline BigInteger& operator+=(const BigInteger& b) { *this = *this + b; return *this; }
-        inline BigInteger& operator-=(const BigInteger& b) { *this = *this - b; return *this; }
-        inline BigInteger& operator*=(const BigInteger& b) { *this = *this * b; return *this; }
-        inline BigInteger& operator/=(const BigInteger& b) { *this = *this / b; return *this; }
-        inline BigInteger& operator%=(const BigInteger& b) { *this = *this % b; return *this; }
+        BigInteger operator=(const BigInteger& b) { this->init(b); return *this; }
+        BigInteger& operator+=(const BigInteger& b) { *this = *this + b; return *this; }
+        BigInteger& operator-=(const BigInteger& b) { *this = *this - b; return *this; }
+        BigInteger& operator*=(const BigInteger& b) { *this = *this * b; return *this; }
+        BigInteger& operator/=(const BigInteger& b) { *this = *this / b; return *this; }
+        BigInteger& operator%=(const BigInteger& b) { *this = *this % b; return *this; }
 
         //relational
         bool operator==(const BigInteger&) const;
-        inline bool operator!=(const BigInteger& b) const { return !(*this == b); }
+        bool operator!=(const BigInteger& b) const { return !(*this == b); }
         bool operator>(const BigInteger&) const;
-        inline bool operator<(const BigInteger& b) const { return !(*this > b || *this == b); }
-        inline bool operator>=(const BigInteger& b) const { return !(*this < b); }
-        inline bool operator<=(const BigInteger& b) const { return !(*this > b); }
+        bool operator<(const BigInteger& b) const { return !(*this > b || *this == b); }
+        bool operator>=(const BigInteger& b) const { return !(*this < b); }
+        bool operator<=(const BigInteger& b) const { return !(*this > b); }
 
         //stream
         friend std::ostream& operator<<(std::ostream&, const BigInteger&);
