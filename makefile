@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-Wall -Werror -g -std=c++11
+CFLAGS=-Wall -Werror -g -std=c++14
 TESTDIRS=test
 MAINDEBUG=$(TESTDIRS)/main_debug.cpp
 MAINDEBUGOBJ=$(addsuffix .o, $(basename $(MAINDEBUG)))

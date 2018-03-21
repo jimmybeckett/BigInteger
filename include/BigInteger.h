@@ -7,7 +7,7 @@
 
 namespace euler { 
     class BigInteger { 
-        std::vector<int> value; 
+        std::vector<int> value; //Note: this should be optimized to conserve memory
         bool isNegative;
 
         BigInteger trim(); //Remove leading zeros
